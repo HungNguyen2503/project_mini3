@@ -1,0 +1,119 @@
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem auto;
+}
+
+h2{
+    margin: 1rem ;
+    padding: 1rem 0 ;
+}
+
+form{
+    margin-left: 1rem;
+}
+
+form input{
+    padding: 0.4rem 1rem;
+    margin-bottom: 0.5rem;
+    outline: none;
+}
+
+form select{
+    padding: 0.4rem 1rem; 
+    outline: none;
+}
+
+.users .item{
+    flex: 0 0 12.5%;
+    min-width: 12.5rem;
+    overflow: hidden;
+}
+
+.users .item p{
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 0.6rem;
+    background-color: #FFC356;
+    padding: 1rem 2rem;
+    margin: 0.6rem;
+    cursor: pointer;
+    transform: all 0.5s ease;
+}
+
+.users .item p:hover{
+    background-color: aliceblue;
+    color: #FFC356;
+    transform: scale(0.9);
+}
+
+.products .col{
+    flex: 0 0 calc(100%/6);
+    flex-wrap: wrap;
+    border-radius: 0.6rem;
+    padding: 0.6rem;
+    overflow: hidden;
+    min-width: 12.5rem;
+}
+
+.products .item{
+    padding: 1rem;
+    border-radius: 0.6rem;
+    background-color: aliceblue;
+    cursor: pointer;
+    /* min-width: 12.5rem; */
+}
+
+.products .item__img{
+    width: 100%;
+    height: 80%;
+}
+
+.products .item__img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.products .item__content{
+    height: 20%;
+}
+
+.products .item__content h2{
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    font-size: 1.2rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; 
+    margin: 0;
+    padding: 0;
+}
+
+.products .item__details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.products .item__content span{
+    font-size: 0.8rem;
+}
+
+.products .item__content span:first-child{
+    font-size: 1rem;
+    color: red;
+}
+
+img {
+  -webkit-user-drag: none;   /* Chrome, Safari */
+  -moz-user-drag: none;      /* Firefox (ít dùng) */
+  -o-user-drag: none;        /* Opera (cũ) */
+  
+  -webkit-user-select: none; /* Safari, iOS */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE 10+ */
+  user-select: none;         /* Chuẩn */
+}
