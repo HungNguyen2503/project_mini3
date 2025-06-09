@@ -6,10 +6,6 @@ let templateUser = document.querySelector(".template-user");
 let templateProduct = document.querySelector(".template-product");
 
 
-let itemUser = document.querySelector(".users .item");
-let itemProduct = document.querySelector(".products .item");
-
-
 function showProducts(products){
     products.forEach(product => {
         const clone = templateProduct.content.cloneNode(true);
@@ -49,7 +45,6 @@ btnSearch.addEventListener("click", async () =>{
     
     console.log(++i);
 });
-
 
 const selectOption = document.querySelector("#sort");
 selectOption.addEventListener("change", async () => {
