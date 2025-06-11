@@ -7,6 +7,7 @@
 h2{
     margin: 1rem ;
     padding: 1rem 0 ;
+
 }
 
 form{
@@ -62,12 +63,28 @@ form select{
     border-radius: 0.6rem;
     background-color: aliceblue;
     cursor: pointer;
-    /* min-width: 12.5rem; */
+    overflow: hidden;
 }
 
 .products .item__img{
     width: 100%;
     height: 80%;
+    position: relative;
+}
+
+.products .item__img span{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #FFC356;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.3rem;
+    z-index: 1;
+    font-size: 0.8rem;
 }
 
 .products .item__img img{
@@ -75,6 +92,7 @@ form select{
     height: 100%;
     object-fit: cover;
     object-position: center;
+    transform: scale(1.2);
 }
 
 .products .item__content{

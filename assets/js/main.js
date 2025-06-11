@@ -9,6 +9,7 @@ let templateProduct = document.querySelector(".template-product");
 function showProducts(products){
     products.forEach(product => {
         const clone = templateProduct.content.cloneNode(true);
+        clone.querySelector(".item__img span").textContent = Math.round(product.discountPercentage*10)/10 + "%";
         clone.querySelector(".item__img img").src = product.thumbnail;
         clone.querySelector(".item__content h2").textContent = product.title;
         clone.querySelector(".item__details span:first-child").textContent = "$" + product.price;
@@ -29,10 +30,12 @@ const getData = async () => {
         
         htmlUsers.appendChild(clone);
     });
+
     showProducts(apiProducts);
 }
 
 getData();
+
 /*start form filter*/
 const btnSearch = document.querySelector("#btn-search");
 let i = 0;
