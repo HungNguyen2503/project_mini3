@@ -30,8 +30,9 @@ const getData = async () => {
         
         htmlUsers.appendChild(clone);
     });
-
     showProducts(apiProducts);
+
+    hideSplash();
 }
 
 getData();
@@ -67,3 +68,14 @@ selectOption.addEventListener("change", async () => {
 });
 
 /**end form filter */
+
+/**Splash start */
+function hideSplash(){
+    document.querySelector(".splash").classList.add("splash-hide");
+    document.querySelector("body").style.overflow = "auto";
+    setTimeout(()=>{
+        
+        document.querySelector(".splash").style.display = "none";
+    },2000);
+}
+/**Splash end */
