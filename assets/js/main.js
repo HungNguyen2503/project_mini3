@@ -1,73 +1,73 @@
-import { fetchApi } from "./fetchAPI.js";
+import { drawProduct } from "./drawProduct.js";
+import { drawUser } from "./drawUser.js";
+import { params } from "./variables.js";
 
-let htmlUsers = document.querySelector(".users .row");
-let htmlProducts = document.querySelector(".products .row");
-let templateUser = document.querySelector(".template-user");
-let templateProduct = document.querySelector(".template-product");
-
-
-function showProducts(products){
-    products.forEach(product => {
-        const clone = templateProduct.content.cloneNode(true);
-        clone.querySelector(".item__img span").textContent = Math.round(product.discountPercentage*10)/10 + "%";
-        clone.querySelector(".item__img img").src = product.thumbnail;
-        clone.querySelector(".item__content h2").textContent = product.title;
-        clone.querySelector(".item__details span:first-child").textContent = "$" + product.price;
-        clone.querySelector(".item__details span:last-child").textContent = "Còn lại: " + product.stock + " sp";
-    
-        htmlProducts.appendChild(clone);
-    });
-}
-
-
-const getData = async () => {
-    let apiUsers = await fetchApi("https://data-json-server-uxiu.onrender.com/api/users");
-    let apiProducts = await fetchApi("https://data-json-server-uxiu.onrender.com/api/products");
-
-    apiUsers.forEach(item => {
-        const clone = templateUser.content.cloneNode(true);
-        clone.querySelector("p").textContent = item.username;
-        
-        htmlUsers.appendChild(clone);
-    });
-    showProducts(apiProducts);
-
+async function getData(){
+    await drawUser();
+    await drawProduct();
     hideSplash();
 }
 
 getData();
 
+
+
+
 /*start form filter*/
 const btnSearch = document.querySelector("#btn-search");
-let i = 0;
 btnSearch.addEventListener("click", async () =>{
     const inputSearch = document.querySelector("#search");
-    const products = await fetchApi(`https://data-json-server-uxiu.onrender.com/api/products?title_like=${inputSearch.value.trim()}`);
-    htmlProducts.innerHTML = ""; // Xóa nội dung cũ
-    showProducts(products);
-    
-    
-    console.log(++i);
+    params.q = inputSearch.value.trim();
+    drawProduct();
 });
 
 const selectOption = document.querySelector("#sort");
 selectOption.addEventListener("change", async () => {
-    if(selectOption.value === "default") {
-        htmlProducts.innerHTML = ""; // Xóa nội dung cũ
-        const products = await fetchApi("https://data-json-server-uxiu.onrender.com/api/products");
-        showProducts(products);
-    }else if(selectOption.value === "asc") {
-        htmlProducts.innerHTML = ""; // Xóa nội dung cũ
-        const products = await fetchApi("https://data-json-server-uxiu.onrender.com/api/products?_sort=price&_order=asc");
-        showProducts(products);
-    }else if(selectOption.value === "desc") {
-        htmlProducts.innerHTML = ""; // Xóa nội dung cũ
-        const products = await fetchApi("https://data-json-server-uxiu.onrender.com/api/products?_sort=price&_order=desc");
-        showProducts(products);
+    switch(selectOption.value){
+        case "default":{
+            params.sort = "";
+            params.order = "";
+            break;
+        }
+        case "price_asc":{
+            params.sort = "price";
+            params.order = "asc";
+            break;
+        }
+        case "price_desc":{
+            params.sort = "price";
+            params.order = "desc";
+            break;
+        }
+        case "discount_desc":{
+            params.sort = "discountPercentage";
+            params.order = "desc";
+            break;
+        }
+    }
+    
+    drawProduct();
+});
+/**end form filter */
+
+
+/**Paginate start */
+const btnPrev = document.querySelector(".paginationPrev");
+const btnNext = document.querySelector(".paginationNext");
+const pageNum = document.querySelector(".paginationNumb");
+btnPrev.addEventListener('click', ()=>{
+    if(params.page > 1){
+        params.page--;
+        pageNum.innerHTML = params.page;
+        drawProduct();
     }
 });
-
-/**end form filter */
+btnNext.addEventListener('click', ()=>{
+    params.page++;
+    pageNum.innerHTML = params.page;
+    drawProduct();
+});
+/**Paginate end */
 
 /**Splash start */
 function hideSplash(){

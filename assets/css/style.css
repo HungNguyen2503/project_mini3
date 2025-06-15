@@ -136,6 +136,34 @@ img {
   user-select: none;         /* Chuẩn */
 }
 
+/*Pagination start*/
+.pagination{
+  display: flex;
+}
+
+.paginationButt{
+  background-color: #FFC356;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.paginationNumb{
+  width: 40px;
+  text-align: center;
+  font-size: 24px;
+}
+
+
+/*Pagination end*/
+
+
+
+
+
+
+
 /* 
 ---------------------------------------------
 09. preloader
